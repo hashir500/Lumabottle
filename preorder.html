@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LumaBottle</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            dark: '#112220',
+            accent: '#47eada',
+            card: '#18302e',
+            faded: '#a7c7c4',
+          },
+          fontFamily: {
+            sans: ['Noto Sans', 'ui-sans-serif', 'system-ui'],
+            display: ['Space Grotesk', 'ui-sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>html, body { background: #112220; }</style>
+  <style>
+    /* Force hide scrollbar everywhere */
+    html, body, .layout-container, .layout-content-container, * {
+      scrollbar-width: none !important; /* Firefox */
+      -ms-overflow-style: none !important; /* IE and Edge */
+    }
+    html::-webkit-scrollbar, body::-webkit-scrollbar,
+    .layout-container::-webkit-scrollbar, .layout-content-container::-webkit-scrollbar, *::-webkit-scrollbar {
+      width: 0 !important;
+      height: 0 !important;
+      display: none !important;
+      background: transparent !important;
+    }
+  </style>
+  <style>
+    html, body, * {
+      cursor: url('./assets/cursor-green-glass.png') 16 16, pointer !important;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col font-sans bg-dark text-white">
+  <!-- Header -->
+  <header class="flex items-center justify-between border-b border-[#244743] px-4 py-3 sm:px-10">
+    <a href="index.html" class="flex items-center gap-4 text-white hover:opacity-80 transition-opacity" style="text-decoration: none;">
+      <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" class="size-6">
+        <path d="M42.4379 44C42.4379 44 36.0744 33.9038 41.1692 24C46.8624 12.9336 42.2078 4 42.2078 4L7.01134 4C7.01134 4 11.6577 12.932 5.96912 23.9969C0.876273 33.9029 7.27094 44 7.27094 44L42.4379 44Z" fill="currentColor"></path>
+      </svg>
+      <h2 class="text-white text-lg font-bold">LumaBottle</h2>
+    </a>
+    <div class="flex md:hidden items-center">
+      <button id="mobile-menu-toggle" aria-label="Open Menu" class="focus:outline-none">
+        <svg class="w-7 h-7 text-[#47eada]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+    <nav id="main-nav" class="hidden md:flex items-center gap-9">
+      <a class="text-white text-sm font-medium" href="features.html">Features</a>
+      <a class="text-white text-sm font-medium" href="how-it-works.html">How it Works</a>
+      <a class="text-white text-sm font-medium" href="app.html">App</a>
+      <a class="text-white text-sm font-medium" href="reviews.html">Reviews</a>
+      <a class="text-white text-sm font-medium" href="faq.html">FAQ</a>
+      <a class="bg-[#47eada] text-[#112220] rounded-full px-4 py-2 font-bold" href="preorder.html">Preorder</a>
+    </nav>
+    <div id="mobile-menu" class="fixed inset-0 z-50 bg-[#112220] bg-opacity-95 flex-col items-center justify-center gap-8 hidden md:hidden">
+      <button id="mobile-menu-close" aria-label="Close Menu" class="absolute top-5 right-5 text-[#47eada] text-3xl">&times;</button>
+      <nav class="flex flex-col gap-6 text-center mt-20">
+        <a href="features.html" class="text-xl font-medium hover:text-[#47eada] transition-colors">Features</a>
+        <a href="how-it-works.html" class="text-xl font-medium hover:text-[#47eada] transition-colors">How it Works</a>
+        <a href="app.html" class="text-xl font-medium hover:text-[#47eada] transition-colors">App</a>
+        <a href="reviews.html" class="text-xl font-medium hover:text-[#47eada] transition-colors">Reviews</a>
+        <a href="faq.html" class="text-xl font-medium hover:text-[#47eada] transition-colors">FAQ</a>
+        <a href="preorder.html" class="bg-[#47eada] text-[#112220] px-6 py-2 rounded-full font-bold text-lg hover:bg-opacity-90 transition-colors mt-4">Preorder</a>
+      </nav>
+    </div>
+  </header>
+  <script>
+    const menuToggle = document.getElementById('mobile-menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuClose = document.getElementById('mobile-menu-close');
+    menuToggle && menuToggle.addEventListener('click', () => {
+      mobileMenu.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    });
+    menuClose && menuClose.addEventListener('click', () => {
+  });
+  menuClose && menuClose.addEventListener('click', () => {
+    mobileMenu.classList.add('hidden');
+    document.body.style.overflow = '';
+  });
+  // Optional: Close menu on nav click (mobile)
+  mobileMenu && Array.from(mobileMenu.querySelectorAll('a')).forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu.classList.add('hidden');
+      document.body.style.overflow = '';
+    });
+  });
+</script>
+  </header>
+
+  <!-- Product Display/Hero Section -->
+  <section class="py-16 px-4 sm:px-10 bg-[#112220]">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row gap-12 items-center">
+      <div class="flex-1 flex justify-center">
+        <img src="https://i.pinimg.com/1200x/92/95/04/929504ad989e87850d7ab745ff777b48.jpg" alt="LumaBottle" class="rounded-xl shadow-2xl max-w-xs md:max-w-sm w-full border-4 border-[#47eada]" />
+      </div>
+      <div class="flex-1">
+        <h1 class="text-4xl sm:text-5xl font-display font-bold mb-4">LumaBottle</h1>
+        <div class="flex items-center gap-4 mb-4">
+          <span class="text-2xl font-bold text-[#47eada]">$69</span>
+          <span class="bg-[#18302e] text-[#47eada] px-3 py-1 rounded-full text-xs font-semibold">Preorder Discount</span>
+        </div>
+        <ul class="space-y-2 mb-8 text-faded">
+          <li class="flex items-center gap-2"><svg class="w-5 h-5 text-[#47eada]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>Smart hydration tracking</li>
+          <li class="flex items-center gap-2"><svg class="w-5 h-5 text-[#47eada]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>App-connected via Bluetooth</li>
+          <li class="flex items-center gap-2"><svg class="w-5 h-5 text-[#47eada]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>14-day battery life</li>
+          <li class="flex items-center gap-2"><svg class="w-5 h-5 text-[#47eada]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>Dishwasher safe</li>
+        </ul>
+        <a href="#preorder-form" class="bg-[#47eada] text-[#112220] px-8 py-3 rounded-full font-bold hover:bg-opacity-90 transition-colors inline-block">Preorder Now</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Product Details Section -->
+  <section class="py-16 px-4 sm:px-10 bg-[#0f1e1d]">
+    <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10">
+      <div class="bg-[#18302e] rounded-xl p-8 text-center">
+        <h3 class="font-bold text-xl mb-2">Keeps Drinks Cold 24h</h3>
+        <p class="text-faded">Double-walled stainless steel insulation keeps your water cold all day, wherever you go.</p>
+      </div>
+      <div class="bg-[#18302e] rounded-xl p-8 text-center">
+        <h3 class="font-bold text-xl mb-2">Personalized Reminders</h3>
+        <p class="text-faded">Get smart reminders based on your activity, weather, and hydration goals.</p>
+      </div>
+      <div class="bg-[#18302e] rounded-xl p-8 text-center">
+        <h3 class="font-bold text-xl mb-2">Seamless App Sync</h3>
+        <p class="text-faded">Track your hydration and progress in real time with the LumaBottle app.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Preorder Form Section -->
+  <section class="py-16 px-4 sm:px-10 bg-[#112220]" id="preorder-form">
+    <div class="max-w-lg mx-auto bg-[#18302e] rounded-xl p-8 shadow-lg">
+      <h2 class="text-2xl font-bold mb-6 text-center">Preorder Your LumaBottle</h2>
+      <form class="space-y-5">
+        <div>
+          <label for="name" class="block text-sm font-semibold mb-1">Name</label>
+          <input type="text" id="name" name="name" class="w-full px-4 py-2 rounded bg-[#112220] border border-[#244743] focus:ring-2 focus:ring-[#47eada] outline-none" required />
+        </div>
+        <div>
+          <label for="email" class="block text-sm font-semibold mb-1">Email</label>
+          <input type="email" id="email" name="email" class="w-full px-4 py-2 rounded bg-[#112220] border border-[#244743] focus:ring-2 focus:ring-[#47eada] outline-none" required />
+        </div>
+        <div>
+          <label for="color" class="block text-sm font-semibold mb-1">Color</label>
+          <select id="color" name="color" class="w-full px-4 py-2 rounded bg-[#112220] border border-[#244743] focus:ring-2 focus:ring-[#47eada] outline-none">
+            <option>Teal</option>
+            <option>Midnight Black</option>
+            <option>Frost White</option>
+          </select>
+        </div>
+        <div>
+          <label for="quantity" class="block text-sm font-semibold mb-1">Quantity</label>
+          <input type="number" id="quantity" name="quantity" min="1" max="10" value="1" class="w-full px-4 py-2 rounded bg-[#112220] border border-[#244743] focus:ring-2 focus:ring-[#47eada] outline-none" required />
+        </div>
+        <button type="submit" class="w-full bg-[#47eada] text-[#112220] py-3 rounded-full font-bold text-lg hover:bg-opacity-90 transition-colors mt-4">Preorder Now</button>
+      </form>
+      <p class="text-xs text-faded text-center mt-4">No payment required yet. We'll notify you when your LumaBottle is ready to ship!</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-[#244743] py-8 px-4 sm:px-10 mt-auto">
+    <section class="px-2 sm:px-6 md:px-10 py-8 max-w-7xl mx-auto">
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        <div class="flex items-center gap-4 mb-6 md:mb-0">
+          <div class="size-6">
+            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M42.4379 44C42.4379 44 36.0744 33.9038 41.1692 24C46.8624 12.9336 42.2078 4 42.2078 4L7.01134 4C7.01134 4 11.6577 12.932 5.96912 23.9969C0.876273 33.9029 7.27094 44 7.27094 44L42.4379 44Z" fill="currentColor"></path>
+            </svg>
+          </div>
+          <span class="font-bold">LumaBottle</span>
+        </div>
+        <div class="flex flex-wrap justify-center gap-6 text-sm text-[#a7c7c4]">
+          <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+          <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+          <a href="#" class="hover:text-white transition-colors">Contact Us</a>
+          <a href="#" class="hover:text-white transition-colors">FAQs</a>
+        </div>
+      </div>
+      <div class="mt-8 pt-6 border-t border-[#244743] text-center text-sm text-[#a7c7c4]">
+        &copy; 2024 LumaBottle. All rights reserved.
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

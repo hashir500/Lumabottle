@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LumaBottle</title>
+  <link rel="icon" type="image/png" href="https://example.com/lumabottle-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            dark: '#112220',
+            accent: '#47eada',
+            card: '#18302e',
+            faded: '#a7c7c4',
+          },
+          fontFamily: {
+            sans: ['Noto Sans', 'ui-sans-serif', 'system-ui'],
+            display: ['Space Grotesk', 'ui-sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>html, body { background: #112220; }</style>
+  <style>
+    /* Force hide scrollbar everywhere */
+    html, body, .layout-container, .layout-content-container, * {
+      scrollbar-width: none !important; /* Firefox */
+      -ms-overflow-style: none !important; /* IE and Edge */
+    }
+    html::-webkit-scrollbar, body::-webkit-scrollbar,
+    .layout-container::-webkit-scrollbar, .layout-content-container::-webkit-scrollbar, *::-webkit-scrollbar {
+      width: 0 !important;
+      height: 0 !important;
+      display: none !important;
+      background: transparent !important;
+    }
+  </style>
+  <style>
+    html, body, * {
+      cursor: url('./assets/cursor-green-glass.png') 16 16, pointer !important;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col font-sans bg-dark text-white">
+  <!-- Header -->
+  <header class="flex items-center justify-between border-b border-[#244743] px-10 py-3">
+    <a href="index.html" class="flex items-center gap-4 text-white hover:opacity-80 transition-opacity" style="text-decoration: none;">
+      <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" class="size-6">
+        <path d="M42.4379 44C42.4379 44 36.0744 33.9038 41.1692 24C46.8624 12.9336 42.2078 4 42.2078 4L7.01134 4C7.01134 4 11.6577 12.932 5.96912 23.9969C0.876273 33.9029 7.27094 44 7.27094 44L42.4379 44Z" fill="currentColor"></path>
+      </svg>
+      <h2 class="text-white text-lg font-bold">LumaBottle</h2>
+    </a>
+    <div class="flex md:hidden items-center">
+      <button id="mobile-menu-toggle" aria-label="Open Menu" class="focus:outline-none">
+        <svg class="w-7 h-7 text-[#47eada]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+    <nav id="main-nav" class="hidden md:flex items-center gap-9">
+      <a class="text-white text-sm font-medium" href="features.html">Features</a>
+      <a class="text-white text-sm font-medium" href="how-it-works.html">How it Works</a>
+      <a class="text-white text-sm font-medium" href="app.html">App</a>
+      <a class="text-white text-sm font-medium" href="reviews.html">Reviews</a>
+      <a class="text-white text-sm font-medium" href="faq.html">FAQ</a>
+      <a class="bg-[#47eada] text-[#112220] rounded-full px-4 py-2 font-bold" href="preorder.html">Preorder</a>
+    </nav>
+    <div id="mobile-menu" class="fixed inset-0 z-50 bg-[#112220] bg-opacity-95 flex-col items-center justify-center gap-8 hidden md:hidden">
+      <button id="mobile-menu-close" aria-label="Close Menu" class="absolute top-5 right-5 text-[#47eada] text-3xl">&times;</button>
+      <nav class="flex flex-col gap-6 text-center mt-20">
+        <a href="features.html" class="text-xl font-medium hover:text-[#47eada] transition-colors">Features</a>
+        <a href="how-it-works.html" class="text-xl font-medium hover:text-[#47eada] transition-colors">How it Works</a>
+        <a href="app.html" class="text-xl font-medium hover:text-[#47eada] transition-colors">App</a>
+        <a href="reviews.html" class="text-xl font-medium hover:text-[#47eada] transition-colors">Reviews</a>
+        <a href="faq.html" class="text-xl font-medium hover:text-[#47eada] transition-colors">FAQ</a>
+        <a href="preorder.html" class="bg-[#47eada] text-[#112220] px-6 py-2 rounded-full font-bold text-lg hover:bg-opacity-90 transition-colors mt-4">Preorder</a>
+      </nav>
+    </div>
+    <script>
+      const menuToggle = document.getElementById('mobile-menu-toggle');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const menuClose = document.getElementById('mobile-menu-close');
+      menuToggle && menuToggle.addEventListener('click', () => {
+        mobileMenu.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+      });
+      menuClose && menuClose.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        document.body.style.overflow = '';
+      });
+      mobileMenu && Array.from(mobileMenu.querySelectorAll('a')).forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.add('hidden');
+          document.body.style.overflow = '';
+        });
+      });
+    </script>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="py-10 px-2 sm:py-16 sm:px-6 md:px-10 text-center bg-[#112220]">
+    <h1 class="text-3xl sm:text-4xl md:text-5xl font-display font-bold mb-6">What Our Customers Say</h1>
+    <p class="text-faded text-sm sm:text-lg max-w-2xl mx-auto">Real stories from real people. Discover why thousands love LumaBottle and how it’s changing their hydration habits for the better.</p>
+  </section>
+
+  <!-- Reviews Grid -->
+  <section class="py-10 px-2 sm:py-16 sm:px-6 md:py-20 md:px-10 bg-[#0f1e1d]">
+    <div class="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 md:gap-10">
+      <!-- Review 1 -->
+      <div class="bg-[#18302e] rounded-xl p-6 sm:p-8 flex flex-col items-center text-center shadow-lg">
+        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sarah" class="w-12 sm:w-16 h-12 sm:h-16 rounded-full mb-4 border-2 border-[#47eada] object-cover" />
+        <h3 class="font-bold text-lg sm:text-xl mb-1">Sarah M.</h3>
+        <div class="flex items-center mb-2">
+          <svg class="w-5 h-5 text-[#47eada]" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.967a1 1 0 00.95.69h4.18c.969 0 1.371 1.24.588 1.81l-3.388 2.46a1 1 0 00-.364 1.118l1.287 3.966c.3.922-.755 1.688-1.54 1.118l-3.389-2.46a1 1 0 00-1.175 0l-3.389 2.46c-.784.57-1.838-.196-1.539-1.118l1.287-3.966a1 1 0 00-.364-1.118l-3.388-2.46c-.783-.57-.38-1.81.588-1.81h4.18a1 1 0 00.95-.69l1.286-3.967z"/></svg>
+          <svg class="w-5 h-5 text-[#47eada]" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.967a1 1 0 00.95.69h4.18c.969 0 1.371 1.24.588 1.81l-3.388 2.46a1 1 0 00-.364 1.118l1.287 3.966c.3.922-.755 1.688-1.54 1.118l-3.389-2.46a1 1 0 00-1.175 0l-3.389 2.46c-.784.57-1.838-.196-1.539-1.118l1.287-3.966a1 1 0 00-.364-1.118l-3.388-2.46c-.783-.57-.38-1.81.588-1.81h4.18a1 1 0 00.95-.69l1.286-3.967z"/></svg>
+          <svg class="w-5 h-5 text-[#47eada]" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.967a1 1 0 00.95.69h4.18c.969 0 1.371 1.24.588 1.81l-3.388 2.46a1 1 0 00-.364 1.118l1.287 3.966c.3.922-.755 1.688-1.54 1.118l-3.389-2.46a1 1 0 00-1.175 0l-3.389 2.46c-.784.57-1.838-.196-1.539-1.118l1.287-3.966a1 1 0 00-.364-1.118l-3.388-2.46c-.783-.57-.38-1.81.588-1.81h4.18a1 1 0 00.95-.69l1.286-3.967z"/></svg>
+          <svg class="w-5 h-5 text-[#47eada]" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.967a1 1 0 00.95.69h4.18c.969 0 1.371 1.24.588 1.81l-3.388 2.46a1 1 0 00-.364 1.118l1.287 3.966c.3.922-.755 1.688-1.54 1.118l-3.389-2.46a1 1 0 00-1.175 0l-3.389 2.46c-.784.57-1.838-.196-1.539-1.118l1.287-3.966a1 1 0 00-.364-1.118l-3.388-2.46c-.783-.57-.38-1.81.588-1.81h4.18a1 1 0 00.95-.69l1.286-3.967z"/></svg>
+          <svg class="w-5 h-5 text-[#47eada]" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.967a1 1 0 00.95.69h4.18c.969 0 1.371 1.24.588 1.81l-3.388 2.46a1 1 0 00-.364 1.118l1.287 3.966c.3.922-.755 1.688-1.54 1.118l-3.389-2.46a1 1 0 00-1.175 0l-3.389 2.46c-.784.57-1.838-.196-1.539-1.118l1.287-3.966a1 1 0 00-.364-1.118l-3.388-2.46c-.783-.57-.38-1.81.588-1.81h4.18a1 1 0 00.95-.69l1.286-3.967z"/></svg>
+        </div>
+        <p class="text-faded text-sm sm:text-lg">“I never realized how much I was under-hydrating until LumaBottle. The reminders and app insights are game changers!”</p>
+      </div>
+      <!-- Review 2 -->
+      <div class="bg-[#18302e] rounded-xl p-6 sm:p-8 flex flex-col items-center text-center shadow-lg">
+        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="James" class="w-12 sm:w-16 h-12 sm:h-16 rounded-full mb-4 border-2 border-[#47eada] object-cover" />
+        <h3 class="font-bold text-lg sm:text-xl mb-1">James L.</h3>
+        <div class="flex items-center mb-2">
+          <svg class="w-5 h-5 text-[#47eada]" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.967a1 1 0 00.95.69h4.18c.969 0 1.371 1.24.588 1.81l-3.388 2.46a1 1 0 00-.364 1.118l1.287 3.966c.3.922-.755 1.688-1.54 1.118l-3.389-2.46a1 1 0 00-1.175 0l-3.389 2.46c-.784.57-1.838-.196-1.539-1.118l1.287-3.966a1 1 0 00-.364-1.118l-3.388-2.46c-.783-.57-.38-1.81.588-1.81h4.18a1 1 0 00.95-.69l1.286-3.967z"/></svg>
+          <svg class="w-5 h-5 text-[#47eada]" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.967a1 1 0 00.95.69h4.18c.969 0 1.371 1.24.588 1.81l-3.388 2.46a1 1 0 00-.364 1.118l1.287 3.966c.3.922-.755 1.688-1.54 1.118l-3.389-2.46a1 1 0 00-1.175 0l-3.389 2.46c-.784.57-1.838-.196-1.539-1.118l1.287-3.966a1 1 0 00-.364-1.118l-3.388-2.46c-.783-.57-.38-1.81.588-1.81h4.18a1 1 0 00.95-.69l1.286-3.967z"/></svg>
+          <svg class="w-5 h-5 text-[#47eada]" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.967a1 1 0 00.95.69h4.18c.969 0 1.371 1.24.588 1.81l-3.388 2.46a1 1 0 00-.364 1.118l1.287 3.966c.3.922-.755 1.688-1.54 1.118l-3.389-2.46a1 1 0 00-1.175 0l-3.389 2.46c-.784.57-1.838-.196-1.539-1.118l1.287-3.966a1 1 0 00-.364-1.118l-3.388-2.46c-.783-.57-.38-1.81.588-1.81h4.18a1 1 0 00.95-.69l1.286-3.967z"/></svg>
+          <svg class="w-5 h-5 text-[#47eada]" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.967a1 1 0 00.95.69h4.18c.969 0 1.371 1.24.588 1.81l-3.388 2.46a1 1 0 00-.364 1.118l1.287 3.966c.3.922-.755 1.688-1.54 1.118l-3.389-2.46a1 1 0 00-1.175 0l-3.389 2.46c-.784.57-1.838-.196-1.539-1.118l1.287-3.966a1 1 0 00-.364-1.118l-3.388-2.46c-.783-.57-.38-1.81.588-1.81h4.18a1 1 0 00.95-.69l1.286-3.967z"/></svg>
+          <svg class="w-5 h-5 text-[#47eada] opacity-30" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.967a1 1 0 00.95.69h4.18c.969 0 1.371 1.24.588 1.81l-3.388 2.46a1 1 0 00-.364 1.118l1.287 3.966c.3.922-.755 1.688-1.54 1.118l-3.389-2.46a1 1 0 00-1.175 0l-3.389 2.46c-.784.57-1.838-.196-1.539-1.118l1.287-3.966a1 1 0 00-.364-1.118l-3.388-2.46c-.783-.57-.38-1.81.588-1.81h4.18a1 1 0 00.95-.69l1.286-3.967z"/></svg>
+        </div>
+        <p class="text-faded text-sm sm:text-lg">“The design is beautiful and the app is super intuitive. I love seeing my hydration stats every day!”</p>
+      </div>
+      <!-- Review 3 -->
+      <div class="bg-[#18302e] rounded-xl p-6 sm:p-8 flex flex-col items-center text-center shadow-lg">
+        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Priya" class="w-12 sm:w-16 h-12 sm:h-16 rounded-full mb-4 border-2 border-[#47eada] object-cover" />
+        <h3 class="font-bold text-lg sm:text-xl mb-1">Priya S.</h3>
+        <div class="flex items-center mb-2">
+          <svg class="w-5 h-5 text-[#47eada]" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.967a1 1 0 00.95.69h4.18c.969 0 1.371 1.24.588 1.81l-3.388 2.46a1 1 0 00-.364 1.118l1.287 3.966c.3.922-.755 1.688-1.54 1.118l-3.389-2.46a1 1 0 00-1.175 0l-3.389 2.46c-.784.57-1.838-.196-1.539-1.118l1.287-3.966a1 1 0 00-.364-1.118l-3.388-2.46c-.783-.57-.38-1.81.588-1.81h4.18a1 1 0 00.95-.69l1.286-3.967z"/></svg>
+          <svg class="w-5 h-5 text-[#47eada]" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.967a1 1 0 00.95.69h4.18c.969 0 1.371 1.24.588 1.81l-3.388 2.46a1 1 0 00-.364 1.118l1.287 3.966c.3.922-.755 1.688-1.54 1.118l-3.389-2.46a1 1 0 00-1.175 0l-3.389 2.46c-.784.57-1.838-.196-1.539-1.118l1.287-3.966a1 1 0 00-.364-1.118l-3.388-2.46c-.783-.57-.38-1.81.588-1.81h4.18a1 1 0 00.95-.69l1.286-3.967z"/></svg>
+          <svg class="w-5 h-5 text-[#47eada]" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.967a1 1 0 00.95.69h4.18c.969 0 1.371 1.24.588 1.81l-3.388 2.46a1 1 0 00-.364 1.118l1.287 3.966c.3.922-.755 1.688-1.54 1.118l-3.389-2.46a1 1 0 00-1.175 0l-3.389 2.46c-.784.57-1.838-.196-1.539-1.118l1.287-3.966a1 1 0 00-.364-1.118l-3.388-2.46c-.783-.57-.38-1.81.588-1.81h4.18a1 1 0 00.95-.69l1.286-3.967z"/></svg>
+          <svg class="w-5 h-5 text-[#47eada]" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.967a1 1 0 00.95.69h4.18c.969 0 1.371 1.24.588 1.81l-3.388 2.46a1 1 0 00-.364 1.118l1.287 3.966c.3.922-.755 1.688-1.54 1.118l-3.389-2.46a1 1 0 00-1.175 0l-3.389 2.46c-.784.57-1.838-.196-1.539-1.118l1.287-3.966a1 1 0 00-.364-1.118l-3.388-2.46c-.783-.57-.38-1.81.588-1.81h4.18a1 1 0 00.95-.69l1.286-3.967z"/></svg>
+          <svg class="w-5 h-5 text-[#47eada]" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.967a1 1 0 00.95.69h4.18c.969 0 1.371 1.24.588 1.81l-3.388 2.46a1 1 0 00-.364 1.118l1.287 3.966c.3.922-.755 1.688-1.54 1.118l-3.389-2.46a1 1 0 00-1.175 0l-3.389 2.46c-.784.57-1.838-.196-1.539-1.118l1.287-3.966a1 1 0 00-.364-1.118l-3.388-2.46c-.783-.57-.38-1.81.588-1.81h4.18a1 1 0 00.95-.69l1.286-3.967z"/></svg>
+        </div>
+        <p class="text-faded text-sm sm:text-lg">“The hydration reminders are so helpful, and the bottle keeps my water cold all day. Highly recommend!”</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="bg-[#1a3230] py-10 px-2 sm:py-16 sm:px-6 md:py-20 md:px-10">
+    <div class="max-w-4xl mx-auto text-center">
+      <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-6">Ready to Join the LumaBottle Community?</h2>
+      <p class="text-faded text-sm sm:text-lg max-w-2xl mx-auto mb-8">Try LumaBottle for yourself and see why everyone is talking about it!</p>
+      <a href="preorder.html" class="bg-[#47eada] text-[#112220] px-8 py-3 rounded-full font-bold hover:bg-opacity-90 transition-colors inline-block">
+            Preorder Now
+          </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-[#244743] py-8 px-4 sm:px-10 mt-auto">
+    <div class="max-w-7xl mx-auto">
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        <div class="flex items-center gap-4 mb-6 md:mb-0">
+          <div class="size-6">
+            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M42.4379 44C42.4379 44 36.0744 33.9038 41.1692 24C46.8624 12.9336 42.2078 4 42.2078 4L7.01134 4C7.01134 4 11.6577 12.932 5.96912 23.9969C0.876273 33.9029 7.27094 44 7.27094 44L42.4379 44Z" fill="currentColor"></path>
+            </svg>
+          </div>
+          <span class="font-bold">LumaBottle</span>
+        </div>
+        <div class="flex flex-wrap justify-center gap-6 text-sm text-[#a7c7c4]">
+          <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+          <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+          <a href="#" class="hover:text-white transition-colors">Contact Us</a>
+          <a href="#" class="hover:text-white transition-colors">FAQs</a>
+        </div>
+      </div>
+      <div class="mt-8 pt-6 border-t border-[#244743] text-center text-sm text-[#a7c7c4]">
+        &copy; 2024 LumaBottle. All rights reserved.
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

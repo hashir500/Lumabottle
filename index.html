@@ -1,0 +1,436 @@
+<html>
+  <head>
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="" />
+    <link
+      rel="stylesheet"
+      as="style"
+      onload="this.rel='stylesheet'"
+      href="https://fonts.googleapis.com/css2?display=swap&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900&amp;family=Space+Grotesk%3Awght%40400%3B500%3B700"
+    />
+
+    <title>LumaBottle</title>
+    <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64," />
+    <style>
+      .video-hero-container {
+        will-change: transform;
+        position: relative;
+      }
+      .video-hero-bg {
+        backface-visibility: hidden;
+        transform: translateZ(0);
+      }
+    </style>
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <style>
+    /* Force hide scrollbar everywhere */
+    html, body, .layout-container, .layout-content-container, * {
+      scrollbar-width: none !important; /* Firefox */
+      -ms-overflow-style: none !important; /* IE and Edge */
+    }
+    html::-webkit-scrollbar, body::-webkit-scrollbar,
+    .layout-container::-webkit-scrollbar, .layout-content-container::-webkit-scrollbar, *::-webkit-scrollbar {
+      width: 0 !important;
+      height: 0 !important;
+      display: none !important;
+      background: transparent !important;
+    }
+  </style>
+  <style>
+    html, body, * {
+      cursor: url('./assets/cursor-green-glass.png') 16 16, pointer !important;
+    }
+  </style>
+</head>
+  <body>
+    <div class="relative flex size-full min-h-screen flex-col bg-[#112220] dark group/design-root overflow-x-hidden" style='font-family: "Space Grotesk", "Noto Sans", sans-serif;'>
+      <div class="layout-container flex h-full grow flex-col">
+        <header class="flex items-center justify-between border-b border-[#244743] px-10 py-3">
+  <a href="index.html" class="flex items-center gap-4 text-white hover:opacity-80 transition-opacity" style="text-decoration: none;">
+  <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" class="size-6">
+    <path d="M42.4379 44C42.4379 44 36.0744 33.9038 41.1692 24C46.8624 12.9336 42.2078 4 42.2078 4L7.01134 4C7.01134 4 11.6577 12.932 5.96912 23.9969C0.876273 33.9029 7.27094 44 7.27094 44L42.4379 44Z" fill="currentColor"></path>
+  </svg>
+  <h2 class="text-white text-lg font-bold">LumaBottle</h2>
+</a>
+  <div class="flex md:hidden items-center">
+    <button id="mobile-menu-toggle" aria-label="Open Menu" class="focus:outline-none">
+      <svg class="w-7 h-7 text-[#47eada]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+  </div>
+  <nav id="main-nav" class="hidden md:flex items-center gap-9">
+    <a class="text-white text-sm font-medium" href="features.html">Features</a>
+    <a class="text-white text-sm font-medium" href="how-it-works.html">How it Works</a>
+    <a class="text-white text-sm font-medium" href="app.html">App</a>
+    <a class="text-white text-sm font-medium" href="reviews.html">Reviews</a>
+    <a class="text-white text-sm font-medium" href="faq.html">FAQ</a>
+    <a class="bg-[#47eada] text-[#112220] rounded-full px-4 py-2 font-bold" href="preorder.html">Preorder</a>
+  </nav>
+  <div id="mobile-menu" class="fixed inset-0 z-50 bg-[#112220] bg-opacity-95 flex-col items-center justify-center gap-8 hidden md:hidden">
+    <button id="mobile-menu-close" aria-label="Close Menu" class="absolute top-5 right-5 text-[#47eada] text-3xl">&times;</button>
+    <nav class="flex flex-col gap-6 text-center mt-20">
+      <a href="features.html" class="text-xl font-medium hover:text-[#47eada] transition-colors">Features</a>
+      <a href="how-it-works.html" class="text-xl font-medium hover:text-[#47eada] transition-colors">How it Works</a>
+      <a href="app.html" class="text-xl font-medium hover:text-[#47eada] transition-colors">App</a>
+      <a href="reviews.html" class="text-xl font-medium hover:text-[#47eada] transition-colors">Reviews</a>
+      <a href="faq.html" class="text-xl font-medium hover:text-[#47eada] transition-colors">FAQ</a>
+      <a href="preorder.html" class="bg-[#47eada] text-[#112220] px-6 py-2 rounded-full font-bold text-lg hover:bg-opacity-90 transition-colors mt-4">Preorder</a>
+    </nav>
+  </div>
+  <script>
+    const menuToggle = document.getElementById('mobile-menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuClose = document.getElementById('mobile-menu-close');
+    menuToggle && menuToggle.addEventListener('click', () => {
+      mobileMenu.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    });
+    menuClose && menuClose.addEventListener('click', () => {
+      mobileMenu.classList.add('hidden');
+      document.body.style.overflow = '';
+    });
+    mobileMenu && Array.from(mobileMenu.querySelectorAll('a')).forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        document.body.style.overflow = '';
+      });
+    });
+  </script>
+</header>
+        <div class="px-4 sm:px-8 md:px-20 lg:px-32 flex flex-1 justify-center py-5">
+          <div class="layout-content-container flex flex-col w-full max-w-[960px] flex-1">
+            <div class="@container">
+              <div class="@[480px]:p-4">
+                <div class="video-hero-container aspect-video w-full rounded-xl overflow-hidden flex items-center justify-center">
+  <video autoplay loop muted playsinline class="video-hero-bg absolute inset-0 w-full h-full object-cover">
+  <source src="https://www.dropbox.com/scl/fi/ktclb65kk4whiruv51m7z/water-bottleundefined.mp4?rlkey=2ub09b7neyawt01fdr3pt7s23&st=71v58q09&raw=1" type="video/mp4" />
+  Your browser does not support the video tag.
+</video>
+  <div class="relative z-10 flex flex-col items-start justify-center h-full w-full p-5 sm:p-8 md:p-12 text-left transition-all duration-700 opacity-0 translate-y-8" id="hero-overlay">
+  <h1 class="text-white text-3xl sm:text-4xl font-bold mb-2 tracking-tight drop-shadow-lg">LumaBottle</h1>
+  <span class="text-[#a7c7c4] text-base sm:text-lg mb-5 font-normal drop-shadow-md">Minimal. Smart. Hydration.</span>
+  <a
+    href="preorder.html"
+    class="bg-[#47eada] text-[#112220] rounded-full px-7 py-2 font-bold text-base shadow-lg hover:bg-opacity-90 transition-colors"
+  >Preorder</a>
+</div>
+</div>
+              </div>
+            </div>
+            <h2 class="text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5 transition-all duration-700 opacity-0 translate-y-8" id="features-title">Features</h2>
+<script>
+  function animateOnScroll(id) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          el.classList.remove('opacity-0', 'translate-y-8');
+          el.classList.add('opacity-100', 'translate-y-0');
+          observer.disconnect();
+        }
+      });
+    }, { threshold: 0.6 });
+    observer.observe(el);
+  }
+  function animateFeatureCards() {
+    const grid = document.getElementById('features-grid');
+    if (!grid) return;
+    const cards = grid.querySelectorAll('.feature-card');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          cards.forEach((card, i) => {
+            setTimeout(() => {
+              card.classList.remove('opacity-0', 'translate-y-8');
+              card.classList.add('opacity-100', 'translate-y-0');
+            }, i * 120);
+          });
+          observer.disconnect();
+        }
+      });
+    }, { threshold: 0.3 });
+    observer.observe(grid);
+  }
+  window.addEventListener('DOMContentLoaded', () => {
+    animateOnScroll('hero-overlay');
+    animateOnScroll('features-title');
+    animateFeatureCards();
+  });
+</script>
+            <div class="flex flex-col gap-10 px-4 py-10 @container">
+              <div class="grid grid-cols-[repeat(auto-fit,minmax(158px,1fr))] gap-3 p-0" id="features-grid">
+                <div class="flex flex-1 gap-3 rounded-lg border border-[#346560] bg-[#1a3230] p-4 flex-col feature-card transition-all duration-700 opacity-0 translate-y-8">
+                  <div class="text-white" data-icon="Notification" data-size="24px" data-weight="regular">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
+                      <path
+                        d="M216,128v80a16,16,0,0,1-16,16H48a16,16,0,0,1-16-16V56A16,16,0,0,1,48,40h80a8,8,0,0,1,0,16H48V208H200V128a8,8,0,0,1,16,0Zm16-68a36,36,0,1,1-36-36A36,36,0,0,1,232,60Zm-16,0a20,20,0,1,0-20,20A20,20,0,0,0,216,60Z"
+                      ></path>
+                    </svg>
+                  </div>
+                  <div class="flex flex-col gap-1">
+                    <h2 class="text-white text-base font-bold leading-tight">Glow Reminders</h2>
+                    <p class="text-[#93c8c2] text-sm font-normal leading-normal">Stay on track with gentle glow reminders throughout your day.</p>
+                  </div>
+                </div>
+                <div class="flex flex-1 gap-3 rounded-lg border border-[#346560] bg-[#1a3230] p-4 flex-col feature-card transition-all duration-700 opacity-0 translate-y-8">
+                  <div class="text-white" data-icon="Cloud" data-size="24px" data-weight="regular">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
+                      <path
+                        d="M160,40A88.09,88.09,0,0,0,81.29,88.67,64,64,0,1,0,72,216h88a88,88,0,0,0,0-176Zm0,160H72a48,48,0,0,1,0-96c1.1,0,2.2,0,3.29.11A88,88,0,0,0,72,128a8,8,0,0,0,16,0,72,72,0,1,1,72,72Z"
+                      ></path>
+                    </svg>
+                  </div>
+                  <div class="flex flex-col gap-1">
+                    <h2 class="text-white text-base font-bold leading-tight">App Syncing</h2>
+                    <p class="text-[#93c8c2] text-sm font-normal leading-normal">Sync your hydration data with our app for personalized insights.</p>
+                  </div>
+                </div>
+                <div class="flex flex-1 gap-3 rounded-lg border border-[#346560] bg-[#1a3230] p-4 flex-col feature-card transition-all duration-700 opacity-0 translate-y-8">
+                  <div class="text-white" data-icon="Thermometer" data-size="24px" data-weight="regular">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
+                      <path
+                        d="M212,56a28,28,0,1,0,28,28A28,28,0,0,0,212,56Zm0,40a12,12,0,1,1,12-12A12,12,0,0,1,212,96Zm-84,57V88a8,8,0,0,0-16,0v65a32,32,0,1,0,16,0Zm-8,47a16,16,0,1,1,16-16A16,16,0,0,1,120,200Zm40-66V48a40,40,0,0,0-80,0v86a64,64,0,1,0,80,0Zm-40,98a48,48,0,0,1-27.42-87.4A8,8,0,0,0,96,138V48a24,24,0,0,1,48,0v90a8,8,0,0,0,3.42,6.56A48,48,0,0,1,120,232Z"
+                      ></path>
+                    </svg>
+                  </div>
+                  <div class="flex flex-col gap-1">
+                    <h2 class="text-white text-base font-bold leading-tight">Temperature Control</h2>
+                    <p class="text-[#93c8c2] text-sm font-normal leading-normal">Keep your water at the perfect temperature, hot or cold.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <h2 class="text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">How It Works</h2>
+            <div class="grid grid-cols-[40px_1fr] gap-x-2 px-4">
+              <div class="flex flex-col items-center gap-1 pt-5">
+                <div class="size-2 rounded-full bg-white"></div>
+                <div class="w-[1.5px] bg-[#346560] h-4 grow"></div>
+              </div>
+              <div class="flex flex-1 flex-col py-3">
+                <p class="text-white text-base font-medium leading-normal">Fill</p>
+                <p class="text-[#93c8c2] text-base font-normal leading-normal">Fill your LumaBottle with water.</p>
+              </div>
+              <div class="flex flex-col items-center gap-1">
+                <div class="w-[1.5px] bg-[#346560] h-4"></div>
+                <div class="size-2 rounded-full bg-white"></div>
+                <div class="w-[1.5px] bg-[#346560] h-4 grow"></div>
+              </div>
+              <div class="flex flex-1 flex-col py-3">
+                <p class="text-white text-base font-medium leading-normal">Sync</p>
+                <p class="text-[#93c8c2] text-base font-normal leading-normal">Connect your bottle to the app via Bluetooth.</p>
+              </div>
+              <div class="flex flex-col items-center gap-1 pb-3">
+                <div class="w-[1.5px] bg-[#346560] h-4"></div>
+                <div class="size-2 rounded-full bg-white"></div>
+              </div>
+              <div class="flex flex-1 flex-col py-3">
+                <p class="text-white text-base font-medium leading-normal">Hydrate</p>
+                <p class="text-[#93c8c2] text-base font-normal leading-normal">Enjoy smart hydration reminders and track your progress.</p>
+              </div>
+            </div>
+            <h2 class="text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">App Preview</h2>
+            <div class="flex w-full grow bg-[#112220] @container p-4">
+              <div class="w-full gap-1 overflow-hidden bg-[#112220] @[480px]:gap-2 aspect-[2/3] rounded-xl grid grid-cols-[1fr_1fr] grid-rows-[2fr_1fr_1fr]">
+                <div
+                  class="w-full bg-center bg-no-repeat bg-cover aspect-auto rounded-none col-span-2"
+                  style='background-image: url("https://i.ibb.co/HWn1XHb/788shots-so.jpg");'
+                ></div>
+                <div
+                  class="w-full bg-center bg-no-repeat bg-cover aspect-auto rounded-none col-span-2 row-span-2"
+                  style='background-image: url("https://i.ibb.co/GfqxT45F/760shots-so.jpg");'
+                ></div>
+              </div>
+            </div>
+            <h2 class="text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Reviews</h2>
+            <div class="flex flex-col gap-8 overflow-x-hidden bg-[#112220] p-4">
+              <div class="flex flex-col gap-3 bg-[#112220]">
+                <div class="flex items-center gap-3">
+                  <div
+                    class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10"
+                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAy_3NpMxoSidIKFduQ5PGsSjw4cZTJvVD84lD4CjMgUjRY2HPn9QUqRxHG0sAlxL59i-mxPEb3Cv3FtZYRPcGdwMfDazIB256LcSRiqTWaPjbuFNrAWw3CSu0vecjKsDHeXJIY7_dJX_Xxp2vNHWKbdUdXEN2mXCbhB24MbRSy5o294edic29NUKA9-MoyBRbjKhy8o6mxeKVPj4WxZsBLGDku_AyMbS6y2mCYRFSyOyrVNcaHuehalXNZyxI-bCWp23yap5V2EP4");'
+                  ></div>
+                  <div class="flex-1">
+                    <p class="text-white text-base font-medium leading-normal">Olivia Bennett</p>
+                    <p class="text-[#93c8c2] text-sm font-normal leading-normal">June 15, 2024</p>
+                  </div>
+                </div>
+                <div class="flex gap-0.5">
+                  <div class="text-[#47eada]" data-icon="Star" data-size="20px" data-weight="fill">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256">
+                      <path
+                        d="M234.5,114.38l-45.1,39.36,13.51,58.6a16,16,0,0,1-23.84,17.34l-51.11-31-51,31a16,16,0,0,1-23.84-17.34L66.61,153.8,21.5,114.38a16,16,0,0,1,9.11-28.06l59.46-5.15,23.21-55.36a15.95,15.95,0,0,1,29.44,0h0L166,81.17l59.44,5.15a16,16,0,0,1,9.11,28.06Z"
+                      ></path>
+                    </svg>
+                  </div>
+                  <div class="text-[#47eada]" data-icon="Star" data-size="20px" data-weight="fill">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256">
+                      <path
+                        d="M234.5,114.38l-45.1,39.36,13.51,58.6a16,16,0,0,1-23.84,17.34l-51.11-31-51,31a16,16,0,0,1-23.84-17.34L66.61,153.8,21.5,114.38a16,16,0,0,1,9.11-28.06l59.46-5.15,23.21-55.36a15.95,15.95,0,0,1,29.44,0h0L166,81.17l59.44,5.15a16,16,0,0,1,9.11,28.06Z"
+                      ></path>
+                    </svg>
+                  </div>
+                  <div class="text-[#47eada]" data-icon="Star" data-size="20px" data-weight="fill">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256">
+                      <path
+                        d="M234.5,114.38l-45.1,39.36,13.51,58.6a16,16,0,0,1-23.84,17.34l-51.11-31-51,31a16,16,0,0,1-23.84-17.34L66.61,153.8,21.5,114.38a16,16,0,0,1,9.11-28.06l59.46-5.15,23.21-55.36a15.95,15.95,0,0,1,29.44,0h0L166,81.17l59.44,5.15a16,16,0,0,1,9.11,28.06Z"
+                      ></path>
+                    </svg>
+                  </div>
+                  <div class="text-[#47eada]" data-icon="Star" data-size="20px" data-weight="fill">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256">
+                      <path
+                        d="M234.5,114.38l-45.1,39.36,13.51,58.6a16,16,0,0,1-23.84,17.34l-51.11-31-51,31a16,16,0,0,1-23.84-17.34L66.61,153.8,21.5,114.38a16,16,0,0,1,9.11-28.06l59.46-5.15,23.21-55.36a15.95,15.95,0,0,1,29.44,0h0L166,81.17l59.44,5.15a16,16,0,0,1,9.11,28.06Z"
+                      ></path>
+                    </svg>
+                  </div>
+                  <div class="text-[#47eada]" data-icon="Star" data-size="20px" data-weight="fill">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256">
+                      <path
+                        d="M234.5,114.38l-45.1,39.36,13.51,58.6a16,16,0,0,1-23.84,17.34l-51.11-31-51,31a16,16,0,0,1-23.84-17.34L66.61,153.8,21.5,114.38a16,16,0,0,1,9.11-28.06l59.46-5.15,23.21-55.36a15.95,15.95,0,0,1,29.44,0h0L166,81.17l59.44,5.15a16,16,0,0,1,9.11,28.06Z"
+                      ></path>
+                    </svg>
+                  </div>
+                </div>
+                <p class="text-white text-base font-normal leading-normal">
+                  "LumaBottle has completely transformed my hydration habits. The glow reminders are subtle yet effective, and the app provides valuable insights into my daily
+                  intake. Highly recommend!"
+                </p>
+              </div>
+              <div class="flex flex-col gap-3 bg-[#112220]">
+                <div class="flex items-center gap-3">
+                  <div
+                    class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10"
+                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAKNzxC5GshMTLr7IxYRPL2ulXHbqJsiXnrlffFINO5a3ZWw7SsbpkvAl0XAvw5Wqwh7oQgJViIHU0aw776udtDqA41ZXBzXLaLIBAQ1LQJjAA7o1OTKvd_Ki1G6wuHIRI2e0LnH9hRLYnMcZLxrAjimTn8B-Q2ephjymOJ1UoGPrC3-ArOxmDRjXesdVNzQRRKqW6f_7LHOMMupv5SoW1EzQxpDVeFOXfIf-FjT4I3C9eHXXAUs3VxaoRh1rs8euoHPDVP3fky53I");'
+                  ></div>
+                  <div class="flex-1">
+                    <p class="text-white text-base font-medium leading-normal">Owen Harper</p>
+                    <p class="text-[#93c8c2] text-sm font-normal leading-normal">May 22, 2024</p>
+                  </div>
+                </div>
+                <div class="flex gap-0.5">
+                  <div class="text-[#47eada]" data-icon="Star" data-size="20px" data-weight="fill">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256">
+                      <path
+                        d="M234.5,114.38l-45.1,39.36,13.51,58.6a16,16,0,0,1-23.84,17.34l-51.11-31-51,31a16,16,0,0,1-23.84-17.34L66.61,153.8,21.5,114.38a16,16,0,0,1,9.11-28.06l59.46-5.15,23.21-55.36a15.95,15.95,0,0,1,29.44,0h0L166,81.17l59.44,5.15a16,16,0,0,1,9.11,28.06Z"
+                      ></path>
+                    </svg>
+                  </div>
+                  <div class="text-[#47eada]" data-icon="Star" data-size="20px" data-weight="fill">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256">
+                      <path
+                        d="M234.5,114.38l-45.1,39.36,13.51,58.6a16,16,0,0,1-23.84,17.34l-51.11-31-51,31a16,16,0,0,1-23.84-17.34L66.61,153.8,21.5,114.38a16,16,0,0,1,9.11-28.06l59.46-5.15,23.21-55.36a15.95,15.95,0,0,1,29.44,0h0L166,81.17l59.44,5.15a16,16,0,0,1,9.11,28.06Z"
+                      ></path>
+                    </svg>
+                  </div>
+                  <div class="text-[#47eada]" data-icon="Star" data-size="20px" data-weight="fill">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256">
+                      <path
+                        d="M234.5,114.38l-45.1,39.36,13.51,58.6a16,16,0,0,1-23.84,17.34l-51.11-31-51,31a16,16,0,0,1-23.84-17.34L66.61,153.8,21.5,114.38a16,16,0,0,1,9.11-28.06l59.46-5.15,23.21-55.36a15.95,15.95,0,0,1,29.44,0h0L166,81.17l59.44,5.15a16,16,0,0,1,9.11,28.06Z"
+                      ></path>
+                    </svg>
+                  </div>
+                  <div class="text-[#47eada]" data-icon="Star" data-size="20px" data-weight="fill">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256">
+                      <path
+                        d="M234.5,114.38l-45.1,39.36,13.51,58.6a16,16,0,0,1-23.84,17.34l-51.11-31-51,31a16,16,0,0,1-23.84-17.34L66.61,153.8,21.5,114.38a16,16,0,0,1,9.11-28.06l59.46-5.15,23.21-55.36a15.95,15.95,0,0,1,29.44,0h0L166,81.17l59.44,5.15a16,16,0,0,1,9.11,28.06Z"
+                      ></path>
+                    </svg>
+                  </div>
+                  <div class="text-[#478a83]" data-icon="Star" data-size="20px" data-weight="regular">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256">
+                      <path
+                        d="M239.2,97.29a16,16,0,0,0-13.81-11L166,81.17,142.72,25.81h0a15.95,15.95,0,0,0-29.44,0L90.07,81.17,30.61,86.32a16,16,0,0,0-9.11,28.06L66.61,153.8,53.09,212.34a16,16,0,0,0,23.84,17.34l51-31,51.11,31a16,16,0,0,0,23.84-17.34l-13.51-58.6,45.1-39.36A16,16,0,0,0,239.2,97.29Zm-15.22,5-45.1,39.36a16,16,0,0,0-5.08,15.71L187.35,216v0l-51.07-31a15.9,15.9,0,0,0-16.54,0l-51,31h0L82.2,157.4a16,16,0,0,0-5.08-15.71L32,102.35a.37.37,0,0,1,0-.09l59.44-5.14a16,16,0,0,0,13.35-9.75L128,32.08l23.2,55.29a16,16,0,0,0,13.35,9.75L224,102.26S224,102.32,224,102.33Z"
+                      ></path>
+                    </svg>
+                  </div>
+                </div>
+                <p class="text-white text-base font-normal leading-normal">
+                  "I love the sleek design and the temperature control feature. It keeps my water cold for hours, which is perfect for my workouts. The app syncing is a bit buggy
+                  at times, but overall, it's a great product."
+                </p>
+              </div>
+            </div>
+            <h2 class="text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">FAQ</h2>
+            <div class="flex flex-col p-4 gap-3">
+              <details class="flex flex-col rounded-xl border border-[#346560] bg-[#112220] px-[15px] py-[7px] group" open="">
+                <summary class="flex cursor-pointer items-center justify-between gap-6 py-2">
+                  <p class="text-white text-sm font-medium leading-normal">How does the glow reminder work?</p>
+                  <div class="text-white group-open:rotate-180" data-icon="CaretDown" data-size="20px" data-weight="regular">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256">
+                      <path d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z"></path>
+                    </svg>
+                  </div>
+                </summary>
+                <p class="text-[#93c8c2] text-sm font-normal leading-normal pb-2">
+                  The LumaBottle uses gentle LED lights to remind you to drink water throughout the day. You can customize the frequency and intensity of the glow in the app.
+                </p>
+              </details>
+              <details class="flex flex-col rounded-xl border border-[#346560] bg-[#112220] px-[15px] py-[7px] group">
+                <summary class="flex cursor-pointer items-center justify-between gap-6 py-2">
+                  <p class="text-white text-sm font-medium leading-normal">Is the bottle dishwasher safe?</p>
+                  <div class="text-white group-open:rotate-180" data-icon="CaretDown" data-size="20px" data-weight="regular">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256">
+                      <path d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z"></path>
+                    </svg>
+                  </div>
+                </summary>
+                <p class="text-[#93c8c2] text-sm font-normal leading-normal pb-2">
+                  The LumaBottle uses gentle LED lights to remind you to drink water throughout the day. You can customize the frequency and intensity of the glow in the app.
+                </p>
+              </details>
+              <details class="flex flex-col rounded-xl border border-[#346560] bg-[#112220] px-[15px] py-[7px] group">
+                <summary class="flex cursor-pointer items-center justify-between gap-6 py-2">
+                  <p class="text-white text-sm font-medium leading-normal">What is the battery life of the bottle?</p>
+                  <div class="text-white group-open:rotate-180" data-icon="CaretDown" data-size="20px" data-weight="regular">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256">
+                      <path d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z"></path>
+                    </svg>
+                  </div>
+                </summary>
+                <p class="text-[#93c8c2] text-sm font-normal leading-normal pb-2">
+                  The LumaBottle uses gentle LED lights to remind you to drink water throughout the day. You can customize the frequency and intensity of the glow in the app.
+                </p>
+              </details>
+            </div>
+            <div class="@container">
+              <div class="flex flex-col justify-end gap-6 px-4 py-10 @[480px]:gap-8 @[480px]:px-10 @[480px]:py-20">
+                <div class="flex flex-col gap-2 text-center">
+                  <h1
+                    class="text-white tracking-light text-[32px] font-bold leading-tight @[480px]:text-4xl @[480px]:font-black @[480px]:leading-tight @[480px]:tracking-[-0.033em] max-w-[720px]"
+                  >
+                    Stay Hydrated. Stay Smart.
+                  </h1>
+                </div>
+                <div class="flex flex-1 justify-center">
+                  <label class="flex flex-col min-w-40 h-14 max-w-[480px] flex-1 @[480px]:h-16">
+                    <div class="flex w-full flex-1 items-stretch rounded-xl h-full">
+                      <input
+                        placeholder="Enter your email"
+                        class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-white focus:outline-0 focus:ring-0 border-none bg-[#244743] focus:border-none h-full placeholder:text-[#93c8c2] px-4 rounded-r-none border-r-0 pr-2 text-sm font-normal leading-normal @[480px]:text-base @[480px]:font-normal @[480px]:leading-normal"
+                        value=""
+                      />
+                      <div class="flex items-center justify-center rounded-r-xl border-l-0 border-none bg-[#244743] pr-2">
+                        <button
+                          class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-4 @[480px]:h-12 @[480px]:px-5 bg-[#47eada] text-[#112220] text-sm font-bold leading-normal tracking-[0.015em] @[480px]:text-base @[480px]:font-bold @[480px]:leading-normal @[480px]:tracking-[0.015em]"
+                        >
+                          <span class="truncate">Preorder Now</span>
+                        </button>
+                      </div>
+                    </div>
+                  </label>
+                </div>
+              </div>
+            </div>
+            <footer class="flex flex-col gap-6 px-5 py-10 text-center @container">
+              <div class="flex flex-wrap items-center justify-center gap-6 @[480px]:flex-row @[480px]:justify-around">
+                <a class="text-[#93c8c2] text-base font-normal leading-normal min-w-40" href="#">Privacy Policy</a>
+                <a class="text-[#93c8c2] text-base font-normal leading-normal min-w-40" href="#">Terms of Service</a>
+              </div>
+              <p class="text-[#93c8c2] text-base font-normal leading-normal">© 2024 LumaBottle. All rights reserved.</p>
+            </footer>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
